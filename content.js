@@ -45,16 +45,60 @@ function resetBlockingTimes(newBlockingTimes){
 
 
 function setBlockingFilter(update){
+    var masks = document.getElementsByClassName('seizure-control')
     var videos = document.getElementsByTagName("video");
-    if (videos.length == 0){
-        return
+    if (masks.length == 0){
+        var videos = document.getElementsByTagName("video");
+        if (videos.length == 0){
+            return
+        }
+        mask = document.createElement('div')
+        mask.innerHTML = "Seizure-Savior Activated!"
+        mask.className = 'seizure-control';
+        mask.style.display = "none"
+        mask.style.position = "relative";
+        mask.style.width = "853px";
+        mask.style.height = "480px";
+        mask.style.backgroundColor = "black";
+        mask.style.left = "409px";
+        mask.style.top = "0px";
+        mask.style.textAlign = "center";
+        mask.style.opacity = "0.9";
+        mask.style.color = "lightgray";
+        mask.style.fontSize = "50px";
+        mask.style.paddingTop = "200px";
+        videos[0].parentElement.appendChild(mask)
+        masks = document.getElementsByClassName('seizure-control')
     }
+
+    mask = masks[0]
+    video = videos[0]
     if (update){
-        videos[0].style.filter = "brightness(10%)";
+        mask.style.display = "block"
+        mask.style.width = video.style.width;
+        mask.style.height = video.style.height;
+        mask.style.left = video.style.left;
+        mask.style.top = video.style.top;
+        
     } else {
-        videos[0].style.filter = "brightness(100%)";
+        mask.style.display = "none"
     }
+    
+    
+
+    // var videos = document.getElementsByTagName("video");
+    // if (videos.length == 0){
+    //     return
+    // }
+
+
+    // if (update){
+    //     videos[0].style.filter = "brightness(50%) blur(25px) grayscale(100%)";
+    // } else {
+    //     videos[0].style.filter = "brightness(100%) blur(0px) grayscale(0%)";
+    // }
 }
+// https://www.youtube.com/watch?v=uxKPVD5KJCY
 
 
 function checkFilter(){
